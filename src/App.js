@@ -2,6 +2,7 @@ import React from 'react';
 import SessionsPage from './SessionsPage';
 import PlayersPage from './PlayersPage';
 import {db, key} from './firestore';
+// import LiarsDice from './LiarsDice'
 
 class App extends React.Component {
 
@@ -28,11 +29,15 @@ class App extends React.Component {
     var {session, player} = this.getQueryVariables();
     if(session) {
       db.ref(`${key}/${session}`).once("value", sess => {
-        if(sess !== null) {
-          this.setState({session});
+        if(sess.val()  !== null) {
+          this.setState(
+            {
+              session, 
+              config: sess.val().config,
+            });
           if(player) {
             db.ref(`${key}/${session}/players/${player}`).once("value", play => {
-              if(play !== null) {
+              if(play.val() !== null) {
                 this.setState({player});
               }
             });
@@ -45,7 +50,7 @@ class App extends React.Component {
 
   setValue = (newMap) => {
     this.setState(newMap);
-  };
+  }
 
   render() {
     var {session, player} = this.state;
@@ -55,9 +60,9 @@ class App extends React.Component {
         <h1>Liars Dice</h1>
         {session == null && <SessionsPage setAppState={this.setValue}/>}
         {session != null && player == null && <PlayersPage session={session} setAppState={this.setValue} />}
-        {/* {session != null && player != null && <Game session={session} player={player} wordCount={wordsPerPerson}/>} */}
+        {/* {session != null && player != null && <LiarsDice session={session} player={player} />} */}
       </div>
-    )
+    );
   }
 }
 export default App;

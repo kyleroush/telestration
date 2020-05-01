@@ -2,7 +2,7 @@
   "name": "bowl-game",
   "version": "0.1.0",
   "private": true,
-  "homepage": "http://kyleroush.github.io/bowl-game",
+  "homepage": "https://kyleroush.github.io/liars-dice",
   "dependencies": {
     "@material-ui/core": "^4.9.10",
     "@material-ui/icons": "^4.9.1",
