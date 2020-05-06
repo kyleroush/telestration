@@ -2,7 +2,7 @@ import React from 'react';
 import SessionsPage from './SessionsPage';
 import PlayersPage from './PlayersPage';
 import {db, key} from './firestore';
-// import LiarsDice from './LiarsDice'
+import LiarsDice from './LiarsDice'
 
 class App extends React.Component {
 
@@ -28,6 +28,7 @@ class App extends React.Component {
   componentDidMount() {
     var {session, player} = this.getQueryVariables();
     if(session) {
+      session = session.toUpperCase();
       db.ref(`${key}/${session}`).once("value", sess => {
         if(sess.val()  !== null) {
           this.setState(
@@ -36,6 +37,7 @@ class App extends React.Component {
               config: sess.val().config,
             });
           if(player) {
+            player = player.toUpperCase();
             db.ref(`${key}/${session}/players/${player}`).once("value", play => {
               if(play.val() !== null) {
                 this.setState({player});
@@ -58,9 +60,10 @@ class App extends React.Component {
     return (
       <div>
         <h1>Liars Dice</h1>
+        {session && <h2>You {player && `(${player})`} are part of session {session} </h2>}
         {session == null && <SessionsPage setAppState={this.setValue}/>}
         {session != null && player == null && <PlayersPage session={session} setAppState={this.setValue} />}
-        {/* {session != null && player != null && <LiarsDice session={session} player={player} />} */}
+        {session != null && player != null && <LiarsDice session={session} player={player} />}
       </div>
     );
   }

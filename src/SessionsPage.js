@@ -5,6 +5,7 @@ import {ExpandLess, ExpandMore} from '@material-ui/icons';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import {db, key} from './firestore';
+import {gameState_enum} from './enums';
 
 class SessionsPage extends React.Component {
 
@@ -12,7 +13,10 @@ class SessionsPage extends React.Component {
     super(props);
     this.state = {
       action: null,
-      config : {},
+      config : {
+        startingDice: 5,
+        // wildNums : [1], 
+      },
       open: false,
     };
     this.action_enum = {
@@ -22,13 +26,20 @@ class SessionsPage extends React.Component {
   }
 
   create = () => {
-    var session = document.getElementById("session").value;
-
+    var session = document.getElementById("session").value.toUpperCase();
+    if (session === "") {
+      session = Math.random().toString(36).substring(2, 10).toUpperCase();
+    }
     db.ref(`${key}/${session}`).once("value", snapshot => {
 
       if (snapshot.val() === null) {
         var {config} = this.state;
-        db.ref(`${key}/${session}`).update({session, config});
+        db.ref(`${key}/${session}`).update(
+          {
+            session, 
+            config,
+            gameState: gameState_enum.waiting
+          });
         this.props.setAppState({session, config});
         window.history.pushState({}, session, `?session=${session}`);
       } else {
@@ -39,7 +50,7 @@ class SessionsPage extends React.Component {
   }
 
   join = () => {
-    var session = document.getElementById("session").value;
+    var session = document.getElementById("session").value.toUpperCase();
     var {config} = this.state;
 
     db.ref(`${key}/${session}`).once("value", snapshot => {

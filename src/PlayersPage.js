@@ -20,13 +20,14 @@ function PlayersPage(props) {
 
   const setPlayer = ()=> {
     var {session} = props;
-    var player = document.getElementById("name").value;
+    var player = document.getElementById("name").value.toUpperCase();
     db.ref(`${key}/${session}/players/${player}`).once("value", snapshot => {
 
       if (snapshot.val() === null) {
 
         db.ref(`${key}/${session}/players/${player}`).update({
           player,
+          dice: 5,
         })
 
         props.setAppState({player});
