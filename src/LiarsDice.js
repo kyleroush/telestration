@@ -13,9 +13,8 @@ class LiarsDice extends React.Component {
   // add error message
   // create a share url button
   // sounds
-  // continue to roll per player 
-  // start betting button is it needed
-  // who had what
+  // continue to roll per player  
+  // who had what on result page
   // on result page word differently for loser being caller or better
 
   constructor(props) {
