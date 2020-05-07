@@ -12,14 +12,10 @@ class LiarsDice extends React.Component {
   // add a reset session button
   // add error message
   // create a share url button
-  // total nuber of dice alive <<<<
-  // who did the bet <<<
   // sounds
-  // whose turns it is <<<<<<
   // continue to roll per player 
   // start betting button is it needed
   // who had what
-  // for called value display total <<<<
   // on result page word differently for loser being caller or better
 
   constructor(props) {
@@ -33,7 +29,13 @@ class LiarsDice extends React.Component {
     var {session, player} = this.props;
     db.ref(`${key}/${session}`).on("value", snapshot => {
       // should i change this?
-      var {players, gameState, up, order, bet, loser} = snapshot.val()
+      var {players, gameState, up, order, bet, loser} = snapshot.val();
+
+      
+      if(gameState === gameState_enum.rolling && order.filter(player => !players[player].nums).length === 0) {
+        gameState = gameState_enum.betting;
+      }
+
       this.setState({
         loading: false,
         player: players[player],
@@ -108,7 +110,7 @@ class LiarsDice extends React.Component {
         {order && (
           <div>
             <Typography>
-            there are {this.totalNumOfDie()} in the game
+            there are {this.totalNumOfDie()} dice in the game
             </Typography>
             <Typography>
               {order[up%order.length]} is up
@@ -188,7 +190,7 @@ class LiarsDice extends React.Component {
 
     return( 
       <div>
-        {!!bet && <Typography>{order[up%order.length]} bet is {bet.count}(the count) {bet.num}(the number on the die)</Typography>}
+        {!!bet && <Typography>{order[(up-1)%order.length]} bet {bet.count}(the count) {bet.num}(the number on the die)</Typography>}
         {order[up%order.length] === player && 
           <div>
             <TextField id="count" label="Count" variant="outlined" />
@@ -251,7 +253,6 @@ class LiarsDice extends React.Component {
     var count = document.getElementById("count").value;
     var num = document.getElementById("num").value;
 
-
     if(!!count)
       count = parseInt(count);
     else 
@@ -282,11 +283,11 @@ class LiarsDice extends React.Component {
   }
 
   // ===========
-
   _renderResults() {
     var {loser, order, bet} = this.state;
 
     var totals = this.totalUpDice();
+   
 
     return(
       <div>
@@ -303,38 +304,17 @@ class LiarsDice extends React.Component {
                 dice totals
               </ListItemText>
             </ListItem>
-            <ListItem>
-              <ListItemText>
-                1 {totals[1]}
-              </ListItemText>
-            </ListItem>
-            <ListItem>
-              <ListItemText>
-                2 {totals[2]}
-              </ListItemText>
-            </ListItem>
-            <ListItem>
-              <ListItemText>
-                3 {totals[3]}
-              </ListItemText>
-            </ListItem>
-            <ListItem>
-              <ListItemText>
-                4 {totals[4]}
-              </ListItemText>
-            </ListItem>
-            <ListItem>
-              <ListItemText>
-                5 {totals[5]}
-              </ListItemText>
-            </ListItem>
-            <ListItem>
-              <ListItemText>
-                6 {totals[6]}
-              </ListItemText>
-            </ListItem>
+            {
+               [1, 2, 3, 4, 5, 6].map(i => {
+                return (<ListItem>
+                          <Die key={`result-${i}`} currentValue={i} />
 
-
+                          <ListItemText>
+                            There were a total of {totals[i]} {i}
+                          </ListItemText>
+                        </ListItem>);
+               })
+            }
           </List>
         </div>
         <Fab variant="extended" color="primary" onClick={this.nextRound} >Continue</Fab>
