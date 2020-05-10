@@ -2,8 +2,7 @@
 
 export const gameState_enum = {
   waiting: "waiting",
-  rolling: "rolling",
-  betting: "betting",
-  result: "result",
+  playing: "playing",
+  reviewing: "reviewing",
 };
 export default gameState_enum;

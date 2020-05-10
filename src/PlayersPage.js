@@ -27,7 +27,8 @@ function PlayersPage(props) {
 
         db.ref(`${key}/${session}/players/${player}`).update({
           player,
-          dice: 5,
+          on: 0,
+          aviable: 0
         })
 
         props.setAppState({player});

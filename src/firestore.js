@@ -16,5 +16,5 @@ firebase.analytics();
 
 export const db = firebase.database();
 export const firestore = firebase.firestore();
-export const key = "Liars_Dice";
+export const key = "Telestration";
 export default firestore;
