@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/telestration/static/css/main.5ecd60fb.chunk.css",
-    "main.js": "/telestration/static/js/main.71389a85.chunk.js",
-    "main.js.map": "/telestration/static/js/main.71389a85.chunk.js.map",
+    "main.js": "/telestration/static/js/main.878a389c.chunk.js",
+    "main.js.map": "/telestration/static/js/main.878a389c.chunk.js.map",
     "runtime-main.js": "/telestration/static/js/runtime-main.de9c7e1f.js",
     "runtime-main.js.map": "/telestration/static/js/runtime-main.de9c7e1f.js.map",
     "static/js/2.3ed4c05e.chunk.js": "/telestration/static/js/2.3ed4c05e.chunk.js",
     "static/js/2.3ed4c05e.chunk.js.map": "/telestration/static/js/2.3ed4c05e.chunk.js.map",
     "index.html": "/telestration/index.html",
-    "precache-manifest.d16c9e37758c3ebaac8f46b05e48b130.js": "/telestration/precache-manifest.d16c9e37758c3ebaac8f46b05e48b130.js",
+    "precache-manifest.a3e1dbe6da96336e2494aa04d05d3163.js": "/telestration/precache-manifest.a3e1dbe6da96336e2494aa04d05d3163.js",
     "service-worker.js": "/telestration/service-worker.js",
     "static/css/main.5ecd60fb.chunk.css.map": "/telestration/static/css/main.5ecd60fb.chunk.css.map",
     "static/js/2.3ed4c05e.chunk.js.LICENSE.txt": "/telestration/static/js/2.3ed4c05e.chunk.js.LICENSE.txt"
@@ -17,6 +17,6 @@
     "static/js/runtime-main.de9c7e1f.js",
     "static/js/2.3ed4c05e.chunk.js",
     "static/css/main.5ecd60fb.chunk.css",
-    "static/js/main.71389a85.chunk.js"
+    "static/js/main.878a389c.chunk.js"
   ]
 }
