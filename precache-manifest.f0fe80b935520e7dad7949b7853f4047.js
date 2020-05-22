@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "1a7ad0c88edacff2258e1763f5f8a5d9",
+    "revision": "6efa5575b5a7f871f88e611ac89b0197",
     "url": "/telestration/index.html"
   },
   {
-    "revision": "7c47d30067dfbfee3eba",
+    "revision": "987d30f128d12984474a",
     "url": "/telestration/static/css/main.5ecd60fb.chunk.css"
   },
   {
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/telestration/static/js/2.3ed4c05e.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "7c47d30067dfbfee3eba",
-    "url": "/telestration/static/js/main.878a389c.chunk.js"
+    "revision": "987d30f128d12984474a",
+    "url": "/telestration/static/js/main.8fa32df5.chunk.js"
   },
   {
     "revision": "ee3f418446474f74a428",
