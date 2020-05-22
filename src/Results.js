@@ -25,7 +25,7 @@ class Results extends React.Component {
       <div>
         <h3>Results</h3>
 
-        <Typography>the title was {art.title}</Typography>
+        <Typography>the title was {art.title} (from: {art.titleFrom})</Typography>
         <SketchField
           name="sketch"
           className="canvas-area"
@@ -38,7 +38,8 @@ class Results extends React.Component {
           height={420}
           value={art.image}
         />
-        {!!art.guess && <Typography>the guess was {art.guess}</Typography>}
+        <Typography>(by: {art.imageFrom})</Typography>
+        {!!art.guess && <Typography>the guess was {art.guess} (from: {art.guessFrom})</Typography>}
         <div>
           {page >0 && <Fab variant="extended" color="primary" aria-label="join" onClick={() => this.setState({page:page-1})} >
             Prev Page

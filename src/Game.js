@@ -8,7 +8,6 @@ import { Tools, SketchField } from 'react-sketch';
 
 class Game extends React.Component {
 
-  // who did what resulring
   // scrolling / cnavas
   // drawing on results
   // extra tools
@@ -200,18 +199,20 @@ class Game extends React.Component {
     var set = artSets[whose] || [];
     if(!!title) {
       title = title.value;
-      set.push({ title })
+      set.push({ title, titleFrom: player })
     } 
     
     var prev = set[set.length -1];
     if (!!guess) {
       prev.guess = guess.value;
       set[set.length -1] = prev;
+      prev.guessFrom = player;
 
-      set.push({title: guess.value})
-      guess.value = ""
+      set.push({title: guess.value, titleFrom: player });
+      guess.value = "";
     } else {
       prev.image = JSON.stringify(this._sketch.toJSON());
+      prev.imageFrom = player;
       set[set.length -1] = prev;
     }
     // this._sketch
