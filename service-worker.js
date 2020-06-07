@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/telestration/precache-manifest.a5751075dd89ec38843834023f1d2c69.js"
+  "/telestration/precache-manifest.c5f7662bddc438372bd85f056545204b.js"
 );
 
 self.addEventListener('message', (event) => {
