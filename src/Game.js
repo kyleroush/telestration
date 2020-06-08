@@ -3,8 +3,10 @@ import {db, key} from './firestore';
 import gameState_enum from './enums';
 import Players from './Players';
 import Results from './Results';
-import { Fab, Typography, TextField } from '@material-ui/core';
+import { Fab, Typography, TextField, Collapse, ListItemText, List, ListItem, Slider, MenuItem, Select, IconButton } from '@material-ui/core';
 import { Tools, SketchField } from 'react-sketch';
+import {ExpandLess, ExpandMore, Undo, Redo} from '@material-ui/icons';
+import { BlockPicker } from 'react-color';
 
 class Game extends React.Component {
 
@@ -12,10 +14,6 @@ class Game extends React.Component {
   // drawing on results
   // extra tools
   // clear all button
-  
-  // tv show
-  // age of adoline
-
 
   constructor(props) {
     super(props);
@@ -24,8 +22,12 @@ class Game extends React.Component {
       lineWidth: 5,
       lineColor: 'black',
       tool: Tools.Pencil,
+      toolkitOpen: false,
+      canRedo: false,
+      canUndo: false,
+      colors: ['black', 'red', 'purple', 'blue', 'green', 'yellow', 'orange' ]
     };
-    this.empty_convas =   "{\"version\":\"2.4.3\",\"objects\":[],\"background\":\"#fffff0\"}";
+    // this.empty_convas =   "{\"version\":\"2.4.3\",\"objects\":[],\"background\":\"#fffff0\"}";
 
   }
 
@@ -124,7 +126,7 @@ class Game extends React.Component {
   }
 
   _renderPlaying = () => {
-    var {artSets, order, players, max} = this.state;
+    var {artSets, order, players, max, toolkitOpen, canRedo, canUndo} = this.state;
     var {player} = this.props;
 
     artSets = artSets || [];
@@ -162,18 +164,97 @@ class Game extends React.Component {
       <div>
         {!art.title ? <TextField id="title" label="Title" variant="outlined" />:
                       !art.image && <Typography>The Title is {art.title}</Typography>}
+        {!art.image &&  <div>
+          <List>
+            <ListItem button onClick={ () => this.setState({toolkitOpen: !toolkitOpen}) }>
+              <ListItemText primary="Toolkit" />
+              {toolkitOpen ? <ExpandLess /> : <ExpandMore />}
+            </ListItem>
+            <Collapse in={toolkitOpen} timeout="auto" unmountOnExit>
+              <List>
+                <ListItem>
+                  <IconButton disabled={!canUndo} onClick={this._undo}>
+                    <Undo /> 
+                  </IconButton>
+                  <IconButton disabled={!canRedo} onClick={this._redo}>
+                    <Redo /> 
+                  </IconButton>
+                </ListItem>
+                <ListItem>
+                  <ListItemText>
+                    Tool:
+                  </ListItemText>
+                  <Select
+                    labelId="tools"
+                    id="tools"
+                    value={this.state.tool}
+                    onChange={(event) => {
+                      const tool = event.target.value
+                      if(tool === 'eraser') {
+                        this.setState({tool: Tools.Pencil, lineColor: '#fffff0'})
+                        return;
+                      }
+                      this.setState({tool: event.target.value})
+                    }}
+                  >
+                    <MenuItem value={Tools.Pencil}>Pencil</MenuItem>
+                    <MenuItem value={Tools.Line}>Line</MenuItem>
+                    <MenuItem value={Tools.Rectangle}>Rectangle</MenuItem>
+                    <MenuItem value={Tools.Circle}>Circle</MenuItem>
+                    <MenuItem value={"eraser"}>Eraser</MenuItem>
+                  </Select>
+                </ListItem>
+                <ListItem>
+                  <ListItemText>
+                    line color:
+                  </ListItemText>
+                  <BlockPicker triangle="hide" color={this.state.lineColor} colors={this.state.colors} 
+                    onChange={(color)=> {
+                      const { colors } = this.state;
+                      if (colors.includes(color.hex)) {
+                        colors.push(color.hex);
+                      }
+                      this.setState({lineColor: color.hex, colors})
+                    }} />
+                </ListItem>
+                <ListItem>
+                  <ListItemText>
+                    Width:
+                  </ListItemText>
+                  <Slider
+                    defaultValue={this.state.lineWidth}
+                    valueLabelDisplay="auto"
+                    step={1}
+                    min={1}
+                    max={25}
+                    onChange={(_, width)=>this.setState({lineWidth: width})}
+                  />
+                </ListItem>
+              </List>
+            </Collapse>
+          </List>
+        </div> }
+        {/* {!art.image &&  
+          <Typography>
+            Using the {this.state.tool} with color 
+            <Typography color={this.state.lineColor}>
+              {this.state.lineColor}
+            </Typography> 
+            and width {this.state.lineWidth}
+          </Typography>} */}
         <SketchField
           name="sketch"
           className="canvas-area"
           ref={c => (this._sketch = c)}
           lineColor={this.state.lineColor}
           lineWidth={art.image? 0 : this.state.lineWidth}
-          fillColor='transparent'
+          fillColor='#fffff0'
           backgroundColor='#fffff0'
           width={420}
           height={420}
           tool={this.state.tool}
-          value={art.image ===undefined ? this.empty_convas: art.image}
+          value={art.image}
+          onChange={this._onSketchChange}
         />
         {!!art.image &&  <TextField id="guess" label="Guess" variant="outlined" /> }
         <Fab variant="extended" color="primary" aria-label="join" onClick={this.submit} >
@@ -182,6 +263,31 @@ class Game extends React.Component {
       </div>
     );
   }
+
+
+  _onSketchChange = () => {
+    let prev = this.state.canUndo;
+    let now = this._sketch.canUndo();
+    if (prev !== now) {
+      this.setState({ canUndo: now });
+    }
+  };
+
+  _undo = () => {
+    this._sketch.undo();
+    this.setState({
+      canUndo: this._sketch.canUndo(),
+      canRedo: this._sketch.canRedo(),
+    });
+  };
+
+  _redo = () => {
+    this._sketch.redo();
+    this.setState({
+      canUndo: this._sketch.canUndo(),
+      canRedo: this._sketch.canRedo(),
+    });
+  };
 
   submit = () => {
     var {player, session} = this.props;
@@ -248,4 +354,5 @@ class Game extends React.Component {
     ) 
   }
 }
+
 export default Game;

@@ -3,6 +3,8 @@ import SessionsPage from './SessionsPage';
 import PlayersPage from './PlayersPage';
 import {db, key} from './firestore';
 import Game from './Game'
+import NavBar from './navBar'
+import gameState_enum from './enums';
 
 class App extends React.Component {
 
@@ -54,12 +56,32 @@ class App extends React.Component {
     this.setState(newMap);
   }
 
+  reset = () => {
+    var {session} = this.state;
+
+    db.ref(`${key}/${session}`).once("value", snapshot => {
+      const players = {};
+      Object.keys(snapshot.val().players).forEach((name) => {
+        players[name] = {name, on: 0, aviable: 0}
+      });
+
+      db.ref(`${key}/${session}`).update(
+        {
+          gameState: gameState_enum.waiting,
+          order: [],
+          artSets: {},
+          max: null,
+          players
+        });
+    });
+  }
+
   render() {
     var {session, player} = this.state;
 
     return (
       <div>
-        <h1>Telestrations</h1>
+        <NavBar session={session} name={'telestration'}  repo={'telestration'} reset= {this.reset} />
         {session && <h2>You {player && `(${player})`} are part of session {session} </h2>}
         {session == null && <SessionsPage setAppState={this.setValue}/>}
         {session != null && player == null && <PlayersPage session={session} setAppState={this.setValue} />}
