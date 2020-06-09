@@ -14,7 +14,7 @@ jobs:
       - name: Install Dependencies
         run: npm install
       - name: deploy
-        run: REACT_APP_GOOGLE_VERT=${{ secrets.GOOGLE_VERT }} run deploy-firebase -- --token ${{ secrets.FIREBASE_TOKEN }}
+        run: REACT_APP_GOOGLE_VERT=${{ secrets.GOOGLE_VERT }} npm run deploy-firebase -- --token ${{ secrets.FIREBASE_TOKEN }}
 #   firebase:
 #     name: Deploy Firebase
 #     runs-on: ubuntu-latest
