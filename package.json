@@ -6,12 +6,12 @@
   "dependencies": {
     "@material-ui/core": "^4.10.1",
     "@material-ui/icons": "^4.9.1",
+    "material-ui-popup-state": "^1.5.4",
     "firebase": "^7.15.0",
     "jsdom": "^14.1.0",
-    "material-ui-popup-state": "^1.5.4",
     "react": "^16.13.1",
-    "react-color": "^2.18.1",
     "react-dom": "^16.13.1",
+    "react-color": "^2.18.1",
     "react-sketch": "^0.5.1"
   },
   "scripts": {
@@ -22,7 +22,7 @@
     "predeploy-github": "npm run build",
     "deploy-github": "gh-pages -d build",
     "predeploy-firebase": "npm run build",
-    "deploy-firebase": "firebase deploy --only hosting:telestration"
+    "deploy-firebase": "firebase deploy --only hosting:telestrations"
   },
   "eslintConfig": {
     "extends": "react-app"

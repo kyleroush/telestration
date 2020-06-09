@@ -1,6 +1,6 @@
 {
   "hosting": {
-    "site": "telestration",
+    "site": "telestrations",
     "public": "build",
     "ignore": [
       "firebase.json",
