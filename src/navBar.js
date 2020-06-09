@@ -66,7 +66,7 @@ class NavBar extends React.Component {
                       <MoreIcon />
                     </IconButton>
                     <Menu {...bindMenu(popupState)}>
-                      {this.props.session && <MenuItem onClick={() => window.location.href = `/${this.props.repo}`} >To Home Page</MenuItem>}
+                      {this.props.session && <MenuItem onClick={() => window.location.href = process.env.PUBLIC_URL} >To Home Page</MenuItem>}
                       {this.props.reset && this.props.session && <div>
                           <MenuItem onClick={this.props.reset} >Reset Session</MenuItem>
                           <Divider />
