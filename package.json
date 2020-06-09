@@ -41,6 +41,7 @@
   },
   "devDependencies": {
     "react-scripts": "3.4.1",
-    "gh-pages": "^2.2.0"
+    "gh-pages": "^2.2.0",
+    "firebase-tools": "^8.4.2"
   }
 }
