@@ -21,6 +21,13 @@ class NavBar extends React.Component {
       el: null,
     };
   }
+  toHome = () => {
+    window.history.pushState({}, 'home', '?')
+    this.props.setAppState({
+      session: null,
+      player: null
+    })
+  }
   render() {
     const classes = {
       grow: {
@@ -66,7 +73,7 @@ class NavBar extends React.Component {
                       <MoreIcon />
                     </IconButton>
                     <Menu {...bindMenu(popupState)}>
-                      {this.props.session && <MenuItem onClick={() => window.history.pushState({}, 'home', '?') } >To Home Page</MenuItem>}
+                      {this.props.session && <MenuItem onClick={this.toHome} >To Home Page</MenuItem>}
                       {this.props.reset && this.props.session && <div>
                           <MenuItem onClick={this.props.reset} >Reset Session</MenuItem>
                           <Divider />
