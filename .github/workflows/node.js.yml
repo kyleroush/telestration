@@ -13,12 +13,13 @@ jobs:
         uses: actions/checkout@master
       - name: Install Dependencies
         run: npm install
-
-  firebase:
-    name: Deploy Firebase
-    runs-on: ubuntu-latest
-
-    needs: build
-    steps:
-      - name: depoy
+      - name: deploy
         run: npm run deploy-firebase --token ${{ secrets.FIREBASE_TOKEN }}
+#   firebase:
+#     name: Deploy Firebase
+#     runs-on: ubuntu-latest
+
+#     needs: build
+#     steps:
+#       - name: depoy
+#         run: npm run deploy-firebase --token ${{ secrets.FIREBASE_TOKEN }}
