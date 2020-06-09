@@ -1,9 +1,6 @@
 import React from 'react';
-import {db, key} from './firestore';
-import gameState_enum from './enums';
-import Players from './Players';
-import { Fab, Typography, TextField } from '@material-ui/core';
-import { Tools, SketchField } from 'react-sketch';
+import { Fab, Typography } from '@material-ui/core';
+import { SketchField } from 'react-sketch';
 
 class Results extends React.Component {
 

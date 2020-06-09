@@ -6,6 +6,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import {db, key} from './firestore';
+import {setCookies} from './Cookies'
 
 const useStyles = makeStyles((theme) => ({
   margin: {
@@ -32,7 +33,9 @@ function PlayersPage(props) {
         })
 
         props.setAppState({player});
-        window.history.pushState({},  session, `?session=${session}&player=${player}`)
+        // window.history.pushState({},  session, `?session=${session}&player=${player}`)
+        setCookies("session", session)
+        setCookies("player", player)
       } else {
         console.log("already exist")
       }

@@ -5,6 +5,7 @@ import {db, key} from './firestore';
 import Game from './Game'
 import NavBar from './navBar'
 import gameState_enum from './enums';
+import { getCookie } from './Cookies';
 
 class App extends React.Component {
 
@@ -37,7 +38,11 @@ class App extends React.Component {
             {
               session, 
               config: sess.val().config,
-            });
+            }
+          );
+          if (getCookie("session") === session && !player) {
+            player = getCookie("player");
+          }
           if(player) {
             player = player.toUpperCase();
             db.ref(`${key}/${session}/players/${player}`).once("value", play => {
@@ -45,11 +50,10 @@ class App extends React.Component {
                 this.setState({player});
               }
             });
-          }
+          }     
         }
       });
     }
-
   }
 
   setValue = (newMap) => {
