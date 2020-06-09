@@ -75,7 +75,7 @@ class NavBar extends React.Component {
                       {this.props.session && <div>
                         <MenuItem >To share</MenuItem>
                         <MenuItem >
-                          <TextField value={`https://kyleroush.github.io/${this.props.repo}/?session=${this.props.session}`}/>
+                          <TextField value={document.URL}/>
                         </MenuItem>
                         <MenuItem >Copy Url</MenuItem>
                         <Divider />
