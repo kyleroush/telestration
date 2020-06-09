@@ -14,7 +14,7 @@ jobs:
       - name: Install Dependencies
         run: npm install
       - name: deploy
-        run: npm run deploy-firebase --debug --token ${{ secrets.FIREBASE_TOKEN }}
+        run: npm run deploy-firebase -- --token ${{ secrets.FIREBASE_TOKEN }}
 #   firebase:
 #     name: Deploy Firebase
 #     runs-on: ubuntu-latest
