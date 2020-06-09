@@ -1,22 +1,22 @@
 {
   "files": {
     "main.css": "/telestration/static/css/main.e4822a34.chunk.css",
-    "main.js": "/telestration/static/js/main.a6373edf.chunk.js",
-    "main.js.map": "/telestration/static/js/main.a6373edf.chunk.js.map",
+    "main.js": "/telestration/static/js/main.d29677de.chunk.js",
+    "main.js.map": "/telestration/static/js/main.d29677de.chunk.js.map",
     "runtime-main.js": "/telestration/static/js/runtime-main.de9c7e1f.js",
     "runtime-main.js.map": "/telestration/static/js/runtime-main.de9c7e1f.js.map",
-    "static/js/2.8af87d1c.chunk.js": "/telestration/static/js/2.8af87d1c.chunk.js",
-    "static/js/2.8af87d1c.chunk.js.map": "/telestration/static/js/2.8af87d1c.chunk.js.map",
+    "static/js/2.afc08381.chunk.js": "/telestration/static/js/2.afc08381.chunk.js",
+    "static/js/2.afc08381.chunk.js.map": "/telestration/static/js/2.afc08381.chunk.js.map",
     "index.html": "/telestration/index.html",
-    "precache-manifest.6331be6892eab05258822a3e2d128d67.js": "/telestration/precache-manifest.6331be6892eab05258822a3e2d128d67.js",
+    "precache-manifest.f5e82d0e03b6163cca1063747846126e.js": "/telestration/precache-manifest.f5e82d0e03b6163cca1063747846126e.js",
     "service-worker.js": "/telestration/service-worker.js",
     "static/css/main.e4822a34.chunk.css.map": "/telestration/static/css/main.e4822a34.chunk.css.map",
-    "static/js/2.8af87d1c.chunk.js.LICENSE.txt": "/telestration/static/js/2.8af87d1c.chunk.js.LICENSE.txt"
+    "static/js/2.afc08381.chunk.js.LICENSE.txt": "/telestration/static/js/2.afc08381.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.de9c7e1f.js",
-    "static/js/2.8af87d1c.chunk.js",
+    "static/js/2.afc08381.chunk.js",
     "static/css/main.e4822a34.chunk.css",
-    "static/js/main.a6373edf.chunk.js"
+    "static/js/main.d29677de.chunk.js"
   ]
 }
