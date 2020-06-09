@@ -7,8 +7,8 @@ var firebaseConfig = {
     projectId: "reactemoji",
     storageBucket: "reactemoji.appspot.com",
     messagingSenderId: "720480809303",
-    appId: "1:720480809303:web:c82a2de9d2d14ab1a9ce12",
-    measurementId: "G-C64FSH40V9"
+    appId: "1:720480809303:web:39b5d0faef073010a9ce12",
+    measurementId: "G-46CVFFLWX6"
   };
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);

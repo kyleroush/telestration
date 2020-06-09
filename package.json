@@ -2,7 +2,7 @@
   "name": "bowl-game",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://kyleroush.github.io/telestration/",
+  "homepage": "https://kyleroush.github.io/",
   "dependencies": {
     "@material-ui/core": "^4.10.1",
     "@material-ui/icons": "^4.9.1",
@@ -19,8 +19,10 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "predeploy-github": "npm run build",
+    "deploy-github": "gh-pages -d build",
+    "predeploy-firebase": "npm run build",
+    "deploy-firebase": "firebase deploy --only hosting:telestration"
   },
   "eslintConfig": {
     "extends": "react-app"
