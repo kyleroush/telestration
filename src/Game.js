@@ -27,7 +27,7 @@ class Game extends React.Component {
       canUndo: false,
       colors: ['black', 'red', 'purple', 'blue', 'green', 'yellow', 'orange' ]
     };
-    // this.empty_convas =   "{\"version\":\"2.4.3\",\"objects\":[],\"background\":\"#fffff0\"}";
+    this.empty_convas =   "{\"version\":\"2.4.3\",\"objects\":[],\"background\":\"#fffff0\"}";
 
   }
 
@@ -253,7 +253,7 @@ class Game extends React.Component {
           width={420}
           height={420}
           tool={this.state.tool}
-          value={art.image}
+          value={art.image || this.empty_convas}
           onChange={this._onSketchChange}
         />
         {!!art.image &&  <TextField id="guess" label="Guess" variant="outlined" /> }
